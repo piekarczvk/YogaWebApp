@@ -1,5 +1,5 @@
-import SectionHeader from "@/components/ui/SectionHeader";
-import ScrollReveal from "@/components/ui/ScrollReveal";
+import ClipReveal from "@/components/ui/ClipReveal";
+import { TextReveal } from "@/components/ui/ClipReveal";
 
 const steps = [
   {
@@ -24,34 +24,47 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-28 px-6 bg-soft/25">
+    <section className="py-24 md:py-32 px-6 md:px-14 lg:px-20 bg-soft/25">
       <div className="max-w-7xl mx-auto">
-        <SectionHeader
-          eyebrow="The Process"
-          heading="How It Works"
-          subheading="Getting started is simple. Three steps between you and your practice."
-        />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {/* Desktop connector line */}
-          <div className="hidden md:block absolute top-8 left-[calc(33%+1rem)] right-[calc(33%+1rem)] h-px bg-primary/20" />
+        {/* Header */}
+        <div className="flex items-center justify-between mb-20">
+          <ClipReveal direction="up">
+            <h2 className="font-serif text-4xl md:text-5xl text-foreground">
+              How It Works
+            </h2>
+          </ClipReveal>
+          <ClipReveal direction="up" delay={0.1}>
+            <span className="hidden md:block font-sans text-[10px] tracking-[0.28em] uppercase text-primary">
+              The Process
+            </span>
+          </ClipReveal>
+        </div>
 
+        {/* Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6">
           {steps.map((step, i) => (
-            <ScrollReveal key={step.number} delay={i * 0.15}>
-              <div className="flex flex-col">
-                <span className="font-serif text-7xl text-primary/15 leading-none select-none">
+            <ClipReveal key={step.number} direction="up" delay={i * 0.12}>
+              <div className="relative pt-2">
+                {/* Ghost number */}
+                <span className="font-serif text-[10rem] md:text-[11rem] leading-none text-primary/8 select-none absolute -top-6 -left-3 pointer-events-none">
                   {step.number}
                 </span>
-                <h3 className="font-serif text-2xl text-foreground mt-2 mb-4">
-                  {step.title}
-                </h3>
-                <p className="font-sans text-sm text-accent/70 leading-7">
-                  {step.description}
-                </p>
+                <div className="relative">
+                  <TextReveal delay={i * 0.12 + 0.1}>
+                    <h3 className="font-serif text-3xl md:text-4xl text-foreground mb-5">
+                      {step.title}
+                    </h3>
+                  </TextReveal>
+                  <p className="font-sans text-sm text-accent/65 leading-7">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-            </ScrollReveal>
+            </ClipReveal>
           ))}
         </div>
+
       </div>
     </section>
   );

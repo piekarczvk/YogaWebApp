@@ -34,3 +34,14 @@
     font-family: var(--font-serif);
   }
 }
+
+/* ─── Marquee animation ─────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Custom cursor — hide native cursor on pointer devices ─── */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
