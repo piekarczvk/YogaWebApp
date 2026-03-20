@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import clsx from "clsx";
 
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -14,7 +13,6 @@ const timeSlots = [
   { time: "6:00 PM", available: true },
 ];
 
-// Generate this week's dates
 function getWeekDates() {
   const today = new Date();
   const monday = new Date(today);
@@ -48,47 +46,47 @@ export default function DateTimePicker({
 
   return (
     <div className="mb-12">
-      <p className="font-sans text-xs tracking-[0.2em] uppercase text-accent/60 mb-5">
+      <p className="font-sans text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">
         Step 2 — Pick a Date &amp; Time
       </p>
 
       {/* Day selector */}
-      <div className="grid grid-cols-7 gap-2 mb-8">
+      <div className="grid grid-cols-7 gap-1.5 mb-8">
         {weekDates.map(({ day, date, isToday }) => (
           <button
             key={date}
             onClick={() => onDateSelect(date)}
             className={clsx(
-              "flex flex-col items-center py-3 px-1 border transition-colors duration-200 cursor-pointer",
+              "flex flex-col items-center py-3 border transition-colors duration-200",
               selectedDate === date
-                ? "bg-primary border-primary text-background"
+                ? "bg-foreground border-foreground text-background"
                 : isToday
-                ? "border-primary/50 text-foreground"
-                : "border-soft text-accent/70 hover:border-primary/40"
+                ? "border-foreground/30 text-foreground"
+                : "border-foreground/10 text-foreground/40 hover:border-foreground/25"
             )}
           >
-            <span className="font-sans text-[10px] tracking-wider uppercase mb-1">
+            <span className="font-sans text-[9px] tracking-wider uppercase mb-1.5">
               {day}
             </span>
-            <span className="font-serif text-lg leading-none">{date}</span>
+            <span className="font-serif font-light text-lg leading-none">{date}</span>
           </button>
         ))}
       </div>
 
       {/* Time slots */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-2">
         {timeSlots.map(({ time, available }) => (
           <button
             key={time}
             onClick={() => available && onTimeSelect(time)}
             disabled={!available}
             className={clsx(
-              "py-3 px-4 border font-sans text-sm transition-colors duration-200",
+              "py-3 px-3 border font-sans text-[11px] transition-colors duration-200",
               !available
-                ? "border-soft/40 text-accent/30 cursor-not-allowed"
+                ? "border-foreground/6 text-foreground/20 cursor-not-allowed"
                 : selectedTime === time
-                ? "bg-primary border-primary text-background"
-                : "border-soft text-accent/70 hover:border-primary/50 cursor-pointer"
+                ? "bg-foreground border-foreground text-background"
+                : "border-foreground/12 text-foreground/45 hover:border-foreground/30"
             )}
           >
             {available ? time : `${time} — Full`}

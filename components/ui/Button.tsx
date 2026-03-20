@@ -24,23 +24,24 @@ export default function Button({
   disabled = false,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 text-sm tracking-[0.12em] uppercase font-sans font-medium transition-colors duration-300 px-8 py-4 cursor-pointer select-none";
+    "inline-flex items-center justify-center gap-2 font-sans text-[11px] tracking-[0.18em] transition-all duration-300 select-none";
 
   const variants = {
     primary:
-      "bg-primary text-background hover:bg-accent border border-primary hover:border-accent",
+      "bg-foreground text-background px-8 py-4 hover:bg-foreground/80",
     outline:
-      "border border-primary text-primary hover:bg-primary hover:text-background",
-    ghost: "text-primary hover:text-accent underline-offset-4 hover:underline px-0 py-0",
+      "border border-foreground/25 text-foreground/60 px-8 py-4 hover:border-foreground/60 hover:text-foreground",
+    ghost:
+      "text-foreground/40 hover:text-foreground px-0 py-0 underline-offset-4 hover:underline",
   };
 
   const classes = clsx(base, variants[variant], className, {
-    "opacity-40 cursor-not-allowed": disabled,
+    "opacity-30 cursor-not-allowed": disabled,
   });
 
   if (href) {
     return (
-      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+      <motion.div whileTap={{ scale: 0.98 }}>
         <Link href={href} className={classes}>
           {children}
         </Link>
@@ -50,8 +51,7 @@ export default function Button({
 
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.97 }}
+      whileTap={{ scale: 0.98 }}
       type={type}
       onClick={onClick}
       disabled={disabled}

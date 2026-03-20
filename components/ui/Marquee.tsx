@@ -1,22 +1,21 @@
 const TEXT =
-  "HATHA \u00b7 VINYASA \u00b7 YIN \u00b7 BREATHWORK \u00b7 ONLINE SESSIONS \u00b7 FREE TO ATTEND \u00b7 $5 DONATION \u00b7 \u00a0\u00a0";
+  "Hatha \u00b7 Vinyasa \u00b7 Yin \u00b7 Breathwork \u00b7 Online Sessions \u00b7 Free to Attend \u00b7 $5 Donation \u00b7 \u00a0\u00a0";
 
 export default function Marquee() {
   return (
     <div className="overflow-hidden bg-foreground py-4 select-none">
       <div
         className="flex whitespace-nowrap"
-        style={{ animation: "marquee 28s linear infinite" }}
+        style={{ animation: "marquee 32s linear infinite" }}
       >
-        {/* Duplicate for seamless loop — animate translateX(-50%) */}
-        <span className="font-sans text-[11px] tracking-[0.28em] uppercase text-primary pr-0">
-          {TEXT.repeat(8)}
+        <span className="font-sans text-[10px] tracking-[0.22em] text-background/35">
+          {TEXT.repeat(10)}
         </span>
         <span
-          className="font-sans text-[11px] tracking-[0.28em] uppercase text-primary pr-0"
+          className="font-sans text-[10px] tracking-[0.22em] text-background/35"
           aria-hidden
         >
-          {TEXT.repeat(8)}
+          {TEXT.repeat(10)}
         </span>
       </div>
     </div>

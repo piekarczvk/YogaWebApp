@@ -21,8 +21,8 @@ export default function SectionHeader({
       {eyebrow && (
         <p
           className={clsx(
-            "text-xs tracking-[0.22em] uppercase font-sans font-medium mb-4",
-            light ? "text-soft/60" : "text-primary"
+            "font-sans text-[10px] tracking-[0.25em] uppercase mb-5",
+            light ? "text-background/30" : "text-foreground/30"
           )}
         >
           {eyebrow}
@@ -30,8 +30,8 @@ export default function SectionHeader({
       )}
       <h2
         className={clsx(
-          "font-serif text-4xl md:text-5xl leading-tight",
-          light ? "text-soft" : "text-foreground"
+          "font-serif font-light text-4xl md:text-5xl leading-tight",
+          light ? "text-background/80" : "text-foreground"
         )}
       >
         {heading}
@@ -39,9 +39,9 @@ export default function SectionHeader({
       {subheading && (
         <p
           className={clsx(
-            "font-sans text-lg mt-5 leading-relaxed",
-            centered && "max-w-xl mx-auto",
-            light ? "text-soft/60" : "text-accent/70"
+            "font-sans text-[13px] mt-6 leading-8",
+            centered && "max-w-md mx-auto",
+            light ? "text-background/35" : "text-foreground/45"
           )}
         >
           {subheading}

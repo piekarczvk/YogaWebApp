@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { playfair, dmSans } from "@/lib/fonts";
+import { cormorant, dmSans } from "@/lib/fonts";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CustomCursor from "@/components/ui/CustomCursor";
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body>
         <CustomCursor />
         <Navbar />

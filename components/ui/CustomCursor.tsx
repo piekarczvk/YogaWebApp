@@ -55,7 +55,7 @@ export default function CustomCursor() {
         opacity: visible ? (hovered ? 0.5 : 0.85) : 0,
       }}
       transition={{ scale: { duration: 0.25 }, opacity: { duration: 0.2 } }}
-      className="fixed top-0 left-0 w-3 h-3 rounded-full bg-primary pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-multiply"
+      className="fixed top-0 left-0 w-2.5 h-2.5 rounded-full bg-foreground pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-multiply"
     />
   );
 }

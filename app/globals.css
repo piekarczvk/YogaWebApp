@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Color palette */
-  --color-background: #faf8f4;
-  --color-primary: #c9a96e;
-  --color-accent: #8b6f47;
-  --color-foreground: #2c2420;
-  --color-soft: #e8ddd0;
+  /* Monochrome palette — paper white, near-black, two grays */
+  --color-background: #f9f8f6;
+  --color-foreground: #111111;
+  --color-primary:    #888888;   /* neutral mid-gray — labels, secondary */
+  --color-accent:     #555555;   /* darker gray — body text */
+  --color-soft:       #ededea;   /* barely-there surface tint */
 
   /* Typography */
-  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans:  var(--font-dm-sans), system-ui, sans-serif;
 }
 
 @layer base {
@@ -26,22 +26,19 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
+  h1, h2, h3, h4, h5 {
     font-family: var(--font-serif);
+    font-weight: 300;
   }
 }
 
-/* ─── Marquee animation ─────────────────────────────────────── */
+/* ─── Marquee animation ────────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-/* ─── Custom cursor — hide native cursor on pointer devices ─── */
+/* ─── Custom cursor — hide native cursor on pointer devices ── */
 @media (pointer: fine) {
   * { cursor: none !important; }
 }

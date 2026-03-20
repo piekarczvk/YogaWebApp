@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 
 const navLinks = [
@@ -27,15 +26,18 @@ export default function Navbar() {
       className={clsx(
         "fixed top-0 inset-x-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-foreground/95 backdrop-blur-md py-4 shadow-lg"
-          : "bg-transparent py-6"
+          ? "bg-background/95 backdrop-blur-sm border-b border-foreground/8 py-5"
+          : "bg-transparent py-7"
       )}
     >
-      <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-6 md:px-14 flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="font-serif text-xl text-soft tracking-wide hover:text-primary transition-colors duration-300"
+          className={clsx(
+            "font-serif font-light text-base tracking-widest transition-colors duration-300",
+            scrolled ? "text-foreground" : "text-background"
+          )}
         >
           Siren Holistics
         </Link>
@@ -46,7 +48,10 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="font-sans text-xs tracking-[0.15em] uppercase text-soft/80 hover:text-primary transition-colors duration-300"
+                className={clsx(
+                  "font-sans text-[11px] tracking-[0.12em] transition-colors duration-300 hover:opacity-60",
+                  scrolled ? "text-foreground/70" : "text-background/70"
+                )}
               >
                 {link.label}
               </Link>
@@ -54,21 +59,33 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop CTA */}
-        <Link
-          href="/book"
-          className="hidden md:inline-flex items-center gap-2 font-sans text-xs tracking-[0.15em] uppercase border border-primary text-primary px-5 py-2.5 hover:bg-primary hover:text-background transition-colors duration-300"
-        >
-          Book Now
-        </Link>
-
-        {/* Mobile toggle */}
+        {/* Mobile toggle — three thin lines */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden text-soft p-1"
           aria-label="Toggle menu"
+          className={clsx(
+            "md:hidden flex flex-col gap-[5px] p-1",
+            scrolled ? "text-foreground" : "text-background"
+          )}
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          <span
+            className={clsx(
+              "block w-5 h-px bg-current transition-all duration-300",
+              open && "translate-y-[6px] rotate-45"
+            )}
+          />
+          <span
+            className={clsx(
+              "block w-5 h-px bg-current transition-all duration-300",
+              open && "opacity-0"
+            )}
+          />
+          <span
+            className={clsx(
+              "block w-5 h-px bg-current transition-all duration-300",
+              open && "-translate-y-[6px] -rotate-45"
+            )}
+          />
         </button>
       </nav>
 
@@ -80,29 +97,20 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden bg-foreground/98 backdrop-blur-md"
+            className="md:hidden overflow-hidden bg-background border-t border-foreground/8"
           >
-            <ul className="flex flex-col px-6 py-6 gap-6">
+            <ul className="flex flex-col px-6 py-8 gap-7">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="font-sans text-sm tracking-[0.15em] uppercase text-soft/80 hover:text-primary transition-colors duration-300"
+                    className="font-sans text-sm tracking-[0.1em] text-foreground/60 hover:text-foreground transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/book"
-                  onClick={() => setOpen(false)}
-                  className="inline-flex font-sans text-xs tracking-[0.15em] uppercase border border-primary text-primary px-5 py-2.5 hover:bg-primary hover:text-background transition-colors duration-300"
-                >
-                  Book Now
-                </Link>
-              </li>
             </ul>
           </motion.div>
         )}

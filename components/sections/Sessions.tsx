@@ -1,15 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Sun, Moon, Wind, ArrowUpRight } from "lucide-react";
-import { type LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import ClipReveal from "@/components/ui/ClipReveal";
 import Link from "next/link";
 
 interface Session {
   num: string;
-  icon: LucideIcon;
   title: string;
   style: string;
   duration: string;
@@ -20,7 +17,6 @@ interface Session {
 const sessions: Session[] = [
   {
     num: "01",
-    icon: Sun,
     title: "Morning Flow",
     style: "Vinyasa",
     duration: "60 min",
@@ -30,7 +26,6 @@ const sessions: Session[] = [
   },
   {
     num: "02",
-    icon: Moon,
     title: "Deep Stretch",
     style: "Yin",
     duration: "45 min",
@@ -40,7 +35,6 @@ const sessions: Session[] = [
   },
   {
     num: "03",
-    icon: Wind,
     title: "Breathwork & Meditation",
     style: "Hatha",
     duration: "30 min",
@@ -54,18 +48,18 @@ export default function Sessions() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="py-24 md:py-32 px-6 md:px-14 lg:px-20 bg-soft/20">
+    <section className="py-24 md:py-36 px-6 md:px-14 lg:px-20 bg-background">
       <div className="max-w-7xl mx-auto">
 
         {/* Header row */}
-        <div className="flex items-end justify-between mb-16">
+        <div className="flex items-baseline justify-between mb-20">
           <ClipReveal direction="up">
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight">
+            <h2 className="font-serif font-light text-4xl md:text-5xl text-foreground">
               Sessions
             </h2>
           </ClipReveal>
           <ClipReveal direction="up" delay={0.1}>
-            <p className="hidden md:block font-sans text-xs tracking-[0.22em] uppercase text-primary">
+            <p className="hidden md:block font-sans text-[10px] tracking-[0.28em] text-foreground/30">
               What We Offer
             </p>
           </ClipReveal>
@@ -74,88 +68,70 @@ export default function Sessions() {
         {/* Session rows */}
         <div>
           {sessions.map((session, i) => {
-            const Icon = session.icon;
             const isHovered = hovered === session.num;
             return (
-              <ClipReveal key={session.num} direction="up" delay={i * 0.1}>
+              <ClipReveal key={session.num} direction="up" delay={i * 0.08}>
                 <motion.div
                   onHoverStart={() => setHovered(session.num)}
                   onHoverEnd={() => setHovered(null)}
-                  animate={{ backgroundColor: isHovered ? "rgba(232,221,208,0.35)" : "transparent" }}
-                  transition={{ duration: 0.3 }}
-                  className="group border-t border-foreground/10 py-8 md:py-10"
+                  className="group border-t border-foreground/8 py-10 md:py-12"
                 >
-                  <div className="grid grid-cols-12 gap-4 items-center">
+                  <div className="grid grid-cols-12 gap-4 items-start">
 
                     {/* Number */}
-                    <div className="col-span-2 md:col-span-1">
-                      <span className="font-serif text-3xl md:text-4xl text-primary/25 select-none">
+                    <div className="col-span-2 md:col-span-1 pt-1">
+                      <span className="font-sans text-[10px] tracking-[0.15em] text-foreground/20">
                         {session.num}
                       </span>
                     </div>
 
-                    {/* Icon */}
-                    <div className="hidden md:flex col-span-1 justify-center">
-                      <Icon
-                        size={18}
-                        strokeWidth={1.5}
-                        className="text-primary/60"
-                      />
-                    </div>
-
                     {/* Title + meta */}
-                    <div className="col-span-8 md:col-span-4">
-                      <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-tight mb-1">
+                    <div className="col-span-10 md:col-span-4">
+                      <h3 className="font-serif font-light text-2xl md:text-3xl text-foreground leading-tight mb-2">
                         {session.title}
                       </h3>
-                      <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-primary/70">
-                        {session.style} · {session.duration}
+                      <p className="font-sans text-[10px] tracking-[0.18em] text-foreground/30">
+                        {session.style} &nbsp;·&nbsp; {session.duration}
                       </p>
                     </div>
 
                     {/* Description */}
-                    <div className="col-span-12 md:col-span-5 md:col-start-8">
-                      <p className="font-sans text-sm text-accent/65 leading-6 mb-3">
+                    <div className="col-span-12 md:col-span-5 md:col-start-7 md:pt-1">
+                      <p className="font-sans text-[13px] text-foreground/45 leading-7 mb-4">
                         {session.description}
                       </p>
-                      <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-soft border border-soft/60 px-2 py-1">
+                      <span className="font-sans text-[9px] tracking-[0.18em] uppercase border border-foreground/12 text-foreground/30 px-2.5 py-1">
                         {session.level}
                       </span>
                     </div>
 
                     {/* Arrow */}
-                    <div className="hidden md:flex col-span-1 justify-end">
-                      <motion.div
-                        animate={{
-                          x: isHovered ? 0 : -4,
-                          opacity: isHovered ? 1 : 0,
-                        }}
+                    <div className="hidden md:flex col-span-1 justify-end pt-1">
+                      <motion.span
+                        animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -4 }}
                         transition={{ duration: 0.2 }}
+                        className="font-sans text-sm text-foreground/40"
                       >
-                        <ArrowUpRight size={18} className="text-primary" />
-                      </motion.div>
+                        →
+                      </motion.span>
                     </div>
                   </div>
                 </motion.div>
               </ClipReveal>
             );
           })}
-          {/* Bottom border */}
-          <div className="border-t border-foreground/10" />
+          <div className="border-t border-foreground/8" />
         </div>
 
         {/* CTA */}
-        <ClipReveal direction="up" delay={0.3}>
-          <div className="mt-12">
+        <ClipReveal direction="up" delay={0.25}>
+          <div className="mt-14">
             <Link
               href="/book"
-              className="group inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase border border-foreground/30 text-foreground/70 hover:border-primary hover:text-primary px-6 py-3.5 transition-colors duration-300"
+              className="group font-sans text-[11px] tracking-[0.2em] text-foreground/40 hover:text-foreground transition-colors duration-300 flex items-center gap-2 w-fit"
             >
-              Book Any Session
-              <ArrowUpRight
-                size={13}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
+              Book any session
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </Link>
           </div>
         </ClipReveal>

@@ -12,12 +12,13 @@ export default function BookPage() {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-background pt-36 pb-28 px-6">
+    <div className="min-h-screen bg-background pt-36 pb-28 px-6 md:px-14">
       <div className="max-w-3xl mx-auto">
         <SectionHeader
           eyebrow="Reserve Your Space"
           heading="Book a Session"
           subheading="Choose your session, pick a time, and show up. That's all you need to do."
+          centered={false}
         />
 
         <div className="mt-4">

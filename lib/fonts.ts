@@ -1,8 +1,10 @@
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Cormorant, DM_Sans } from "next/font/google";
 
-export const playfair = Playfair_Display({
+export const cormorant = Cormorant({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-cormorant",
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 

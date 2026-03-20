@@ -1,13 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sun, Moon, Wind } from "lucide-react";
-import { type LucideIcon } from "lucide-react";
 import clsx from "clsx";
 
 interface SessionType {
   id: string;
-  icon: LucideIcon;
   title: string;
   style: string;
   duration: string;
@@ -17,7 +14,6 @@ interface SessionType {
 const sessionTypes: SessionType[] = [
   {
     id: "morning-flow",
-    icon: Sun,
     title: "Morning Flow",
     style: "Vinyasa",
     duration: "60 min",
@@ -25,7 +21,6 @@ const sessionTypes: SessionType[] = [
   },
   {
     id: "deep-stretch",
-    icon: Moon,
     title: "Deep Stretch",
     style: "Yin",
     duration: "45 min",
@@ -33,7 +28,6 @@ const sessionTypes: SessionType[] = [
   },
   {
     id: "breathwork",
-    icon: Wind,
     title: "Breathwork & Meditation",
     style: "Hatha",
     duration: "30 min",
@@ -52,44 +46,36 @@ export default function SessionSelector({
 }: SessionSelectorProps) {
   return (
     <div className="mb-12">
-      <p className="font-sans text-xs tracking-[0.2em] uppercase text-accent/60 mb-5">
+      <p className="font-sans text-[10px] tracking-[0.25em] uppercase text-foreground/30 mb-6">
         Step 1 — Choose Your Session
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {sessionTypes.map((s) => {
-          const Icon = s.icon;
           const isSelected = selected === s.id;
           return (
             <motion.button
               key={s.id}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{ scale: 0.99 }}
               onClick={() => onSelect(s.id)}
               className={clsx(
-                "text-left p-6 border transition-colors duration-300 cursor-pointer",
+                "text-left p-6 border transition-colors duration-300",
                 isSelected
-                  ? "border-2 border-primary bg-primary/8"
-                  : "border border-soft bg-soft/30 hover:border-primary/50"
+                  ? "border-foreground/60 bg-foreground/4"
+                  : "border-foreground/10 hover:border-foreground/25"
               )}
             >
-              <Icon
-                className={clsx(
-                  "w-6 h-6 mb-4",
-                  isSelected ? "text-primary" : "text-accent/50"
-                )}
-                strokeWidth={1.5}
-              />
-              <p className="font-sans text-xs tracking-[0.15em] uppercase text-accent/60 mb-1">
-                {s.style} · {s.duration}
+              <p className="font-sans text-[9px] tracking-[0.18em] uppercase text-foreground/30 mb-3">
+                {s.style} &nbsp;·&nbsp; {s.duration}
               </p>
               <h3
                 className={clsx(
-                  "font-serif text-xl mb-2",
-                  isSelected ? "text-foreground" : "text-foreground/80"
+                  "font-serif font-light text-xl mb-3",
+                  isSelected ? "text-foreground" : "text-foreground/70"
                 )}
               >
                 {s.title}
               </h3>
-              <p className="font-sans text-xs text-accent/60 leading-5">
+              <p className="font-sans text-[11px] text-foreground/35 leading-6">
                 {s.description}
               </p>
             </motion.button>

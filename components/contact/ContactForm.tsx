@@ -18,11 +18,11 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="py-12 text-center border border-primary/30 bg-primary/5">
-        <p className="font-serif text-2xl text-foreground mb-3">
+      <div className="py-12 border-t border-foreground/10">
+        <p className="font-serif font-light text-2xl text-foreground mb-3">
           Message received.
         </p>
-        <p className="font-sans text-sm text-accent/70">
+        <p className="font-sans text-[12px] text-foreground/40">
           Siren Holistics will be in touch within 24 hours.
         </p>
       </div>
@@ -33,38 +33,38 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         <div>
-          <label className="block font-sans text-xs tracking-[0.12em] uppercase text-accent/60 mb-2">
+          <label className="block font-sans text-[10px] tracking-[0.15em] uppercase text-foreground/30 mb-3">
             Name
           </label>
           <input
             type="text"
             required
             placeholder="Your name"
-            className="w-full bg-transparent border-b border-soft pb-2.5 font-sans text-sm text-foreground placeholder-accent/30 focus:outline-none focus:border-primary transition-colors duration-300"
+            className="w-full bg-transparent border-b border-foreground/12 pb-3 font-sans text-[13px] text-foreground placeholder-foreground/20 focus:outline-none focus:border-foreground/40 transition-colors duration-300"
           />
         </div>
         <div>
-          <label className="block font-sans text-xs tracking-[0.12em] uppercase text-accent/60 mb-2">
+          <label className="block font-sans text-[10px] tracking-[0.15em] uppercase text-foreground/30 mb-3">
             Email
           </label>
           <input
             type="email"
             required
             placeholder="you@example.com"
-            className="w-full bg-transparent border-b border-soft pb-2.5 font-sans text-sm text-foreground placeholder-accent/30 focus:outline-none focus:border-primary transition-colors duration-300"
+            className="w-full bg-transparent border-b border-foreground/12 pb-3 font-sans text-[13px] text-foreground placeholder-foreground/20 focus:outline-none focus:border-foreground/40 transition-colors duration-300"
           />
         </div>
       </div>
 
       <div>
-        <label className="block font-sans text-xs tracking-[0.12em] uppercase text-accent/60 mb-2">
+        <label className="block font-sans text-[10px] tracking-[0.15em] uppercase text-foreground/30 mb-3">
           Message
         </label>
         <textarea
           required
           rows={5}
           placeholder="Say hello, ask a question, share what you're looking for..."
-          className="w-full bg-transparent border-b border-soft pb-2.5 font-sans text-sm text-foreground placeholder-accent/30 focus:outline-none focus:border-primary transition-colors duration-300 resize-none"
+          className="w-full bg-transparent border-b border-foreground/12 pb-3 font-sans text-[13px] text-foreground placeholder-foreground/20 focus:outline-none focus:border-foreground/40 transition-colors duration-300 resize-none"
         />
       </div>
 
